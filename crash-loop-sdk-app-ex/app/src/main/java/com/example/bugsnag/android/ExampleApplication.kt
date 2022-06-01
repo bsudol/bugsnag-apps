@@ -65,7 +65,7 @@ class CrashLoopApplication : Application() {
         val crashLoop = Bugsnag.getLastRunInfo()?.consecutiveLaunchCrashes
 
         if (crashLoop != null) {
-            if (Bugsnag.getLastRunInfo()?.crashedDuringLaunch == true && crashLoop == 1) {
+            if (Bugsnag.getLastRunInfo()?.crashedDuringLaunch == true && crashLoop == 2) {
                 try {
                     getCacheDir().delete(); //Cleared cache after two launch crashes
                     Bugsnag.leaveBreadcrumb("Crash Loop, Cleared Cache") //Log this in dashboard
@@ -74,7 +74,7 @@ class CrashLoopApplication : Application() {
                     e.printStackTrace()
                 }
             }
-            if (Bugsnag.getLastRunInfo()?.crashedDuringLaunch == true && crashLoop == 2) {
+            if (Bugsnag.getLastRunInfo()?.crashedDuringLaunch == true && crashLoop == 3) {
                 try {
                     val activeFeatures = FeatureMgr.get_active_features()
                     FeatureMgr.turnoff(activeFeatures) //Cleared active features after third launch crash
