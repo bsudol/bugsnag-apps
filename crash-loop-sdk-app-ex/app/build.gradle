@@ -1,0 +1,57 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
+android {
+    compileSdkVersion 31
+    ndkVersion "17.2.4988734"
+
+    defaultConfig {
+        applicationId "com.example.bugsnag.android"
+        minSdkVersion 16
+        targetSdkVersion 31
+        versionCode 2
+        versionName "2.0.0"
+    }
+    signingConfigs {
+        config {
+            keyAlias "password"
+            keyPassword "password"
+            storeFile file("../fakekeys.jks")
+            storePassword "password"
+        }
+    }
+    def bugsnag_release_stage = project.hasProperty("bugsnag-release-stage")
+            ? project.property("bugsnag-release-stage") : "staging"
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            resValue("string", "bugsnag_release_stage", "${bugsnag_release_stage}")
+        }
+    }
+    externalNativeBuild.cmake.path "CMakeLists.txt"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    flavorDimensions 'release'
+
+}
+
+dependencies {
+    implementation "com.bugsnag:bugsnag-android:5.17.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:1.4.0"
+    implementation "com.google.android.material:material:1.4.0"
+    implementation "com.bugsnag:bugsnag-plugin-android-okhttp:5.+"
+    implementation "com.squareup.okhttp3:okhttp:4.+"
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+}
+
+apply plugin: "com.bugsnag.android.gradle"
+bugsnag.failOnUploadError = false
