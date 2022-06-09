@@ -1,25 +1,11 @@
-# Example Swift iOS integration with Bugsnag
+# Example iOS integration with Bugsnag including Crash Loop/ Feauture Flag Functionality
 
-This application was made to demonstrate various features of the Bugsnag Cocoa notifier when used in an iOS application written in Swift and Objective-C.
+This app is built off of the [Bugsnag sdk example application](https://github.com/bugsnag/bugsnag-cocoa/tree/master/examples/swift-ios/swift-ios).
 
-When running the application you will see a number of elements that will exercise different features provided by Bugsnag.  These are broadly divided into the following sections:
+- In AppDelegate, we leverage Bugsnag's crash loop detection functionality to check if the app has crashed at launch. 
+- The app forces a crash during the launch screen (a.k.a. LaunchView) for the first 2 launch attempts, and the 3rd launch attempt will successfully pass through the launch screen into the login page/ MainView.
+- In AppDelegate, if the app has crashed at launch 3 or more times in succession, the FeatureMgr class is leveraged to shut off a "feature", which directly stops the forced crash. The feature flag data will be removed from the session/errors in Bugsnag at this point as well.
 
-- Crashes: Events which terminate the app are sent to Bugsnag automatically. Reopen the app after a crash to send reports.
-- Handled errors and exceptions: Events which can be handled gracefully can also be reported to Bugsnag.
-- Metadata, breadcrumbs, and callbacks: Adding diagnostic data and modifying how the event shows on the Bugsnag dashboard.
-- Sessions: Demonstrates the methods of manually determining when sessions are created and expire.
-
-Specific implementation details can be found in the `ViewController.swift` file.
-
-### Running the app
-
-1. Run `pod install`
-2. Open the generated workspace in XCode
-3. Add your API key to the `bugsnag` dictionary of `Info.plist` 
-4. Run the app! There are several examples of different kinds of errors which can be thrown.
-
-#### Configuration examples
-
-A set of configuration examples have been included underneath the minimum setup.  To use, simply comment out the AppDelegate's: `Bugsnag.start` and uncomment the subsequent configuration lines.
-
-Each line has a brief explanation of what the option does, and for full information please read the documentation at https://docs.bugsnag.com/platforms/ios/configuration-options/.
+1. Open the project root in `/bugsnag-apps/swift-ios` with XCode
+2. Insert your API key into the Info.plist
+3. Run the app! You will need to re-open the app 3x to see a successful launch. Check your Bugsnag dashboard for the NSInvalidArgumentException error which will contain crash loop related breadcrumbs.
