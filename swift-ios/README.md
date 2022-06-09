@@ -8,4 +8,5 @@ This app is built off of the [Bugsnag sdk example application](https://github.co
 
 1. Open the project root in `/bugsnag-apps/swift-ios` with XCode
 2. Insert your API key into the Info.plist
-3. Run the app! You will need to re-open the app 3x to see a successful launch. Check your Bugsnag dashboard for the NSInvalidArgumentException error which will contain crash loop related breadcrumbs.
+3. Run pod install
+4. Run the app! You will need to re-open the app 3x to see a successful launch. Check your Bugsnag dashboard for the NSInvalidArgumentException error which will contain crash loop related breadcrumbs.
