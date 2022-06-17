@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let activeFeatures = FeatureMgr.get_active_features()
         Bugsnag.addFeatureFlag(name: activeFeatures, variant: "Active") //See https://docs.bugsnag.com/platforms/android/features-experiments/
         
-        
         //Below code is logic to identify and respond to crash loops. See https://docs.bugsnag.com/platforms/android/identifying-crashes-at-launch/
         let crashLoop = Bugsnag.lastRunInfo?.consecutiveLaunchCrashes
 
@@ -61,9 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
         do {
             sleep(1)
+            // During splash screen (launchView) activity, crash if features are still active
             if (FeatureMgr.turn_off(msg: "")) {
                 FeatureMgr.generateUncaughtException()
             }

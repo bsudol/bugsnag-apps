@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+// Simple class allowing us to interact with a "Feature Manager" -> when we use the turn_off function to "turn off"
+// our feature flags, we disable the code that was causing an exception, allowing the app to successfully launch.
 class FeatureMgr {
     static var doWeCrash = true
     static var FF = "new_launch_video"
@@ -21,7 +24,6 @@ class FeatureMgr {
     
     static func get_active_features() -> String { return FF }
     
-    
     static func generateUncaughtException() {
         let someJson : Dictionary = ["foo":self]
         do {
@@ -31,5 +33,4 @@ class FeatureMgr {
             // Why does this crash the app? A very good question.
         }
     }
-    
 }

@@ -42,8 +42,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RFw-nw-UNB">
-                                <rect key="frame" x="15" y="410" width="409" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RFw-nw-UNB">
+                                <rect key="frame" x="15" y="410" width="389" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -64,11 +64,14 @@
                             <constraint firstItem="SJB-D9-Xog" firstAttribute="leading" secondItem="2Py-zd-8EU" secondAttribute="leading" constant="1" id="TqC-j5-7VC"/>
                             <constraint firstItem="bEq-DG-MLF" firstAttribute="top" secondItem="Hsq-jU-ooj" secondAttribute="bottom" constant="10" id="V0G-Rg-w01"/>
                             <constraint firstItem="x8k-qt-vVc" firstAttribute="leading" secondItem="viC-an-SWj" secondAttribute="leading" constant="15" id="VjR-Et-eOO"/>
+                            <constraint firstItem="viC-an-SWj" firstAttribute="trailing" secondItem="RFw-nw-UNB" secondAttribute="trailing" constant="5" id="VrE-8f-QY2"/>
+                            <constraint firstAttribute="trailing" secondItem="RFw-nw-UNB" secondAttribute="trailing" id="X6R-yT-3Ib"/>
                             <constraint firstItem="RFw-nw-UNB" firstAttribute="top" secondItem="0f9-Lf-DyA" secondAttribute="bottom" constant="10" id="Z9I-4a-pjg"/>
                             <constraint firstItem="viC-an-SWj" firstAttribute="trailing" secondItem="bEq-DG-MLF" secondAttribute="trailing" constant="10" id="a2I-Tt-eru"/>
                             <constraint firstItem="0f9-Lf-DyA" firstAttribute="top" secondItem="bEq-DG-MLF" secondAttribute="bottom" constant="10" id="gQ6-Lc-hhZ"/>
                             <constraint firstItem="T8e-Qz-gPG" firstAttribute="leading" secondItem="x8k-qt-vVc" secondAttribute="trailing" constant="15" id="giB-Di-s6c"/>
                             <constraint firstItem="0f9-Lf-DyA" firstAttribute="leading" secondItem="viC-an-SWj" secondAttribute="leading" constant="15" id="h6f-qj-3kN"/>
+                            <constraint firstItem="viC-an-SWj" firstAttribute="trailing" secondItem="RFw-nw-UNB" secondAttribute="trailing" constant="20" id="jKa-Gs-QrK"/>
                             <constraint firstAttribute="trailing" secondItem="SJB-D9-Xog" secondAttribute="trailing" constant="20" symbolic="YES" id="keO-oZ-IaR"/>
                             <constraint firstItem="SJB-D9-Xog" firstAttribute="top" secondItem="viC-an-SWj" secondAttribute="top" constant="114" id="s9R-pl-9qD"/>
                             <constraint firstItem="Hsq-jU-ooj" firstAttribute="leading" secondItem="viC-an-SWj" secondAttribute="leading" constant="15" id="scp-Le-QJa"/>
