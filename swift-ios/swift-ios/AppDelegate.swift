@@ -49,23 +49,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if ((crashLoop) != nil){
             if (Bugsnag.lastRunInfo?.crashedDuringLaunch == true && crashLoop! == 1) {
                 //clear cache here
-                Bugsnag.leaveBreadcrumb(withMessage: "Crash Loop, Cleared Cache")
-                Bugsnag.leaveBreadcrumb("Crash Loop", metadata: ["value": crashLoop], type: .log)
+                Bugsnag.leaveBreadcrumb(withMessage: "Crash Loop, Cleared Cache") // Leave breadcrumb
+                Bugsnag.leaveBreadcrumb("Crash Loop", metadata: ["value": crashLoop], type: .log) // Leave breadcrumb with crash loop info
             }
             if (Bugsnag.lastRunInfo?.crashedDuringLaunch == true && crashLoop! == 2) {
-                FeatureMgr.turn_off(msg: activeFeatures)
+                FeatureMgr.turn_off(msg: activeFeatures) // Shut off any active feature flags
                 Bugsnag.clearFeatureFlags()
-                Bugsnag.leaveBreadcrumb("Cleared Feature Flags", metadata: ["value": activeFeatures], type: .log)
-                Bugsnag.leaveBreadcrumb("Crash Loop", metadata: ["value": crashLoop], type: .log)
+                Bugsnag.leaveBreadcrumb("Cleared Feature Flags", metadata: ["value": activeFeatures], type: .log) // Track what feature flags were disabled during crash loop
+                Bugsnag.leaveBreadcrumb("Crash Loop", metadata: ["value": crashLoop], type: .log) // Leave breadcrumb with crash loop info
             }
         }
         
         do {
             sleep(1)
             // During splash screen (launchView) activity, crash if features are still active
-            if (FeatureMgr.turn_off(msg: "")) {
-                FeatureMgr.generateUncaughtException()
-            }
+            FeatureMgr.check_if_active(msg: activeFeatures)
         }
             
         Bugsnag.markLaunchCompleted()

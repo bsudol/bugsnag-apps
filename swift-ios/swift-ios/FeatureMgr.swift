@@ -22,6 +22,12 @@ class FeatureMgr {
         return doWeCrash
     }
     
+    static func check_if_active(msg : String) -> Void {
+        if (doWeCrash) {
+            generateUncaughtException()
+        }
+    }
+    
     static func get_active_features() -> String { return FF }
     
     static func generateUncaughtException() {
